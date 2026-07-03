@@ -12,7 +12,7 @@
 ## 安装
 
 ```
-/plugin marketplace add <你的用户名>/jiaoquaner-plugin
+/plugin marketplace add qilinqian7/jiaoquaner
 /plugin install jiaoquaner@jiaoquaner
 /reload-plugins
 ```
