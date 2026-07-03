@@ -31,18 +31,68 @@
 { "plugin": ["jiaoquaner@git+https://github.com/qilinqian7/jiaoquaner.git"] }
 ```
 
-### Codex / Cursor / Kimi / Gemini CLI / Pi
+### Kimi Code
 
-仓库已内置各自的适配清单，按对应 CLI 的插件 / 扩展安装方式指向本仓库即可：
+支持从 git 仓库直装：
 
-| CLI | 适配文件 |
-|-----|----------|
-| Codex | `.codex-plugin/plugin.json` |
-| Cursor | `.cursor-plugin/plugin.json` |
-| Kimi | `.kimi-plugin/plugin.json` |
-| Gemini CLI | `gemini-extension.json` + `GEMINI.md` |
-| Pi | `.pi/extensions/jiaoquaner.ts` |
-| 通用 agents | `.agents/plugins/marketplace.json` |
+```text
+/plugins install https://github.com/qilinqian7/jiaoquaner
+```
+
+或打开 `/plugins` 插件管理器，从市场里找 `jiaoquaner` 安装。适配文件：`.kimi-plugin/plugin.json`。
+
+### Pi
+
+作为 Pi 包从仓库安装：
+
+```bash
+pi install git:github.com/qilinqian7/jiaoquaner
+```
+
+本地开发，用当前目录作为临时包运行：
+
+```bash
+pi -e /path/to/jiaoquaner-plugin
+```
+
+适配文件：`.pi/extensions/jiaoquaner.ts`（注册 `skills/`，按需触发，不做每会话注入）。
+
+### Gemini CLI
+
+作为 Gemini 扩展从仓库安装（读取 `gemini-extension.json` + `GEMINI.md`）：
+
+```bash
+gemini extensions install https://github.com/qilinqian7/jiaoquaner
+```
+
+> 具体命令以你所用 Gemini CLI 版本的 `gemini extensions --help` 为准。
+
+### Codex
+
+Codex 的插件走**官方市场** [`openai/plugins`](https://github.com/openai/plugins)，`.codex-plugin/plugin.json` 是为此准备的适配清单。目前 Codex 没有"从任意 git 仓库直装"的文档化命令，要在 Codex 里装本插件，需先把它提交到官方 `openai/plugins` 市场；之后：
+
+```bash
+# 在 Codex CLI 里
+/plugins          # 打开插件搜索
+jiaoquaner        # 搜索
+# 选择 Install Plugin
+```
+
+（未上架前，Codex 里无法直接安装本仓库。）
+
+### Cursor
+
+Cursor 走**自家插件市场**，`.cursor-plugin/plugin.json` 是适配清单。同样没有自托管 git 直装命令，需先上架 Cursor 市场；之后在 Cursor Agent 对话里：
+
+```text
+/add-plugin jiaoquaner
+```
+
+（未上架前，Cursor 里无法直接安装本仓库。）
+
+### 其它
+
+`.agents/plugins/marketplace.json` 为通用 agents 市场准备；各适配文件均指向同一份 `./skills/`。
 
 ## 配置 API Key
 
