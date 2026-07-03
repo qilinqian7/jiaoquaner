@@ -11,18 +11,38 @@
 
 ## 安装
 
+技能内容（`skills/*/SKILL.md`）跨 CLI 通用，仓库为每个 CLI 各配了一份适配清单，均指向同一份 `./skills/`。技能**按需触发**，不会强制注入每个会话。
+
+### Claude Code
+
 ```
 /plugin marketplace add qilinqian7/jiaoquaner
 /plugin install jiaoquaner@jiaoquaner
 /reload-plugins
 ```
 
-本地开发时也可直接指向目录：
+本地开发也可直接指向目录：`/plugin marketplace add /path/to/jiaoquaner-plugin`。
 
+### OpenCode
+
+在 `opencode.json` 的 `plugin` 数组加入（详见 [`.opencode/INSTALL.md`](./.opencode/INSTALL.md)）：
+
+```json
+{ "plugin": ["jiaoquaner@git+https://github.com/qilinqian7/jiaoquaner.git"] }
 ```
-/plugin marketplace add /path/to/jiaoquaner-plugin
-/plugin install jiaoquaner@jiaoquaner
-```
+
+### Codex / Cursor / Kimi / Gemini CLI / Pi
+
+仓库已内置各自的适配清单，按对应 CLI 的插件 / 扩展安装方式指向本仓库即可：
+
+| CLI | 适配文件 |
+|-----|----------|
+| Codex | `.codex-plugin/plugin.json` |
+| Cursor | `.cursor-plugin/plugin.json` |
+| Kimi | `.kimi-plugin/plugin.json` |
+| Gemini CLI | `gemini-extension.json` + `GEMINI.md` |
+| Pi | `.pi/extensions/jiaoquaner.ts` |
+| 通用 agents | `.agents/plugins/marketplace.json` |
 
 ## 配置 API Key
 
