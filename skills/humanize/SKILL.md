@@ -21,13 +21,13 @@ argument-hint: [待降AI率的文本或文件路径]
 按顺序解析，找到即用：
 
 ```bash
-API_KEY="${jiaoquaner_api_key:-$JIAOQUANER_API_KEY}"
+API_KEY="${JIAOQUANER_API_KEY:-$jiaoquaner_api_key}"
 ```
 
 如果为空，说明用户没配置。**不要中断，转达以下二选一让用户配置**，拿到后再继续：
 
-1. 设置环境变量（推荐、可复用）：`export jiaoquaner_api_key=sk-xxxxxx`
-   —— 注意需在启动当前会话前 export，或让用户把 key 直接贴给你，本次运行用 `API_KEY=sk-xxxxxx` 临时赋值。
+1. 设置环境变量（推荐、可复用）：`export JIAOQUANER_API_KEY=sk-xxxxxx`
+   —— 注意需在启动当前会话前 export，或让用户把 key 直接贴给你，本次运行用 `JIAOQUANER_API_KEY=sk-xxxxxx` 临时赋值。
 2. 直接把明文 key（形如 `sk-xxxxxx`）贴给你，本次运行用上。
 
 key 的获取方式：通过 `POST /api/v1/apikeys`（JWT 认证）创建，仅返回一次。

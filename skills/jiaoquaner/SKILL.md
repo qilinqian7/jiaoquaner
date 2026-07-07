@@ -31,13 +31,13 @@ argument-hint: [想用焦圈儿做什么 / 待处理文本或文件]
 ### API Key（优先环境变量）
 
 ```bash
-API_KEY="${jiaoquaner_api_key:-$JIAOQUANER_API_KEY}"
+API_KEY="${JIAOQUANER_API_KEY:-$jiaoquaner_api_key}"
 ```
 
 为空时**不要中断**，转达二选一让用户配置后再继续：
 
-1. `export jiaoquaner_api_key=sk-xxxxxx`（推荐、可复用，需在启动会话前 export）
-2. 直接把明文 key（形如 `sk-xxxxxx`）贴给你，本次运行用 `API_KEY=sk-xxxxxx` 临时赋值
+1. `export JIAOQUANER_API_KEY=sk-xxxxxx`（推荐、可复用，需在启动会话前 export）
+2. 直接把明文 key（形如 `sk-xxxxxx`）贴给你，本次运行用 `JIAOQUANER_API_KEY=sk-xxxxxx` 临时赋值
 
 key 通过 `POST /api/v1/apikeys`（JWT 认证）创建，仅返回一次。**绝不要把 key 写进任何文件或提交到 git。**
 
